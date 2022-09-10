@@ -65,3 +65,15 @@ curl -F 'file=@/path/matrix.csv' "localhost:8080/echo"
 - The code is reasonably documented
 - The code is tested
 - The code is robust and handles invalid input and provides helpful error messages
+
+## Building and Running the web server from Docker
+
+### building the web server
+```
+docker build -t league-challenge .
+```
+
+### running the web server
+```
+docker run -it -p 8080:8080 league-challenge:latest
+```
