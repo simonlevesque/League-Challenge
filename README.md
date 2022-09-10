@@ -77,3 +77,12 @@ docker build -t league-challenge .
 ```
 docker run -it -p 8080:8080 league-challenge:latest
 ```
+
+### Developing form inside the container
+
+to be able to develop the web server without always rebuilding or restarting the docker container, run the container with this command:
+```
+docker run -it -p 8080:8080 -v /your/path/to/the/repo/backend:/go/src/league/challenge/backend league-challenge:latest ./dev.sh
+```
+
+This is accomplished by using the https://github.com/pilu/fresh project and docker volumes mapping. Fresh will watch for file events, and every time you create/modify/delete a file, it will build and restart the application automatically. Any compilation error will be printed in the terminal windows running the docker container, watch out if using the -d flag.
