@@ -21,3 +21,18 @@ func Multiply(m Matrix) (string, error) {
      }
      return p.Text(10), nil
 }
+
+func Invert(m Matrix) (string, error) {
+     dimension := len(m)
+     mirror := make(Matrix, dimension)
+     for i, _ := range m {
+         mirror[i] = make([]int, dimension)
+     }
+     
+     for i, row := range m {
+         for j, cell := range row {
+             mirror[j][i] = cell
+         }
+     }
+     return FmtSquareMatrix(mirror)
+}

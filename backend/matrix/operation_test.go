@@ -105,3 +105,29 @@ func TestMultiplyLargeNumbers(t *testing.T) {
         t.Errorf("Multiplication is incorrect : expecting a number with %v digits, actual %v", expected, len(result))
      }
 }
+
+// Invert mirrors matrix on its diagonal
+
+func TestInvertedMatrix(t *testing.T) {
+     expected := "1,2,3\n4,5,6\n7,8,9\n"
+     result, _ := Invert(Matrix{{1, 4, 7}, {2, 5, 8}, {3, 6, 9}})
+
+     if expected != result {
+        t.Errorf("Invert is incorrect : expected %s actual %s", expected, result)
+     }    
+}
+
+// Test simple inverses
+
+func TestTrivialInvert(t *testing.T) {
+     result, _ := Invert(Matrix{})
+
+     if "" != result {
+        t.Errorf("Nothing should be the inverse of nothing: actual %s", result)
+     }
+
+     result, _ = Invert(Matrix{{5}})
+     if "5\n" != result {
+        t.Errorf("A one by one matrix should be its own inverse: actual %s", result)
+     }
+}
