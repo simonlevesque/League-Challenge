@@ -1,5 +1,7 @@
 package matrix
 
+// Collection of function related to parsing and validating matrixes from csv
+
 import (
        "encoding/csv"
        "errors"
@@ -10,6 +12,7 @@ import (
 )
 
 // Given a csv file, return the matrix representation or an error
+// Return error if matrix is not square or non integer are used as values
 
 func NewMatrix(r io.Reader) (Matrix, error) {
      records, err := csv.NewReader(r).ReadAll()

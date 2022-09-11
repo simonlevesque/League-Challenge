@@ -1,5 +1,7 @@
 package matrix
 
+// Collection of useful constructs for dealing with matrixes
+
 import (
        "fmt"
        "strconv"
