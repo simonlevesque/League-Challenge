@@ -45,5 +45,6 @@ func handleCsvMatrix(matrixFn matrix.FnMatrixString) http.Handler {
 
 func Start() {
 	http.Handle("/echo", handleCsvMatrix(matrix.FmtSquareMatrix))
+        http.Handle("/flatten", handleCsvMatrix(matrix.FmtFlattenMatrix))
 	http.ListenAndServe(":8080", nil)
 }

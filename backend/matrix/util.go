@@ -27,3 +27,16 @@ func FmtSquareMatrix(m Matrix) (string, error) {
      }
      return fmtMatrixStr, nil
 }
+
+// Return the matrix as a single line string, with values separated by commas
+
+func FmtFlattenMatrix(m Matrix) (string, error) {
+     var fmtMatrixArray []string
+     for _, row := range m {
+         for _, cell := range row {
+             fmtMatrixArray = append(fmtMatrixArray, strconv.Itoa(cell))
+         }
+     }
+     fmtMatrixStr := strings.Join(fmtMatrixArray, ",")
+     return fmtMatrixStr, nil
+}
