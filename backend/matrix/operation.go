@@ -11,3 +11,13 @@ func Sum(m Matrix) (string, error) {
      }
      return s.Text(10), nil
 }
+
+func Multiply(m Matrix) (string, error) {
+     p := big.NewInt(1)
+     for _, row := range m {
+         for _, cell := range row {
+             p.Mul(p, big.NewInt(int64(cell)))
+         }
+     }
+     return p.Text(10), nil
+}

@@ -46,3 +46,62 @@ func TestSumLargeNumbers(t *testing.T) {
         t.Errorf("Sum is incorrect : expected %v actual %v", len(result), expected)
      }
 }
+
+// Support matrix elements multiplication
+
+func TestMultiplyMatrixElements(t *testing.T) {
+     expected := "362880"
+     result, _ := Multiply(Matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}})
+
+     if expected != result {
+        t.Errorf("Multiplication is incorrect : expected %s actual %s", expected, result)
+     }
+}
+
+// The empty matrix should Multiply to one
+
+func TestMultiplyNothing(t *testing.T) {
+     expected := "1"
+     result, _ := Multiply(Matrix{})
+
+     if expected != result {
+        t.Errorf("Multiplication is incorrect : expected %s actual %s", expected, result)
+     }
+}
+
+// Negative number changes the sign of the product
+
+func TestMultiplyNegatives(t *testing.T) {
+     result , _ := Multiply(Matrix{{1, 1}, {-1, 1}})
+     if "-1" != result {
+        t.Errorf("Multiplication is incorrect : expected -1 actual %s", result)
+     }
+
+     result , _ = Multiply(Matrix{{1, 1}, {-1, -1}})
+     if "1" != result {
+        t.Errorf("Multiplication is incorrect : expected 1 actual %s", result)
+     }
+}
+
+// Zero anywhere in the matrix will force the product to zero
+
+func TestMultiplyAnyZero(t *testing.T) {
+     result , _ := Multiply(Matrix{{25, 25, 100}, {46, 0, 78}, {403, 50, -56}})
+     if "0" != result {
+        t.Errorf("Multiplication is incorrect : expected 0 actual %s", result)
+     }
+}
+
+// Support large numbers multiplication
+
+func TestMultiplyLargeNumbers(t *testing.T) {
+     expected := 171
+     // use int64 max value
+     result, _ := Multiply(Matrix{{9223372036854775807, 9223372036854775807, 9223372036854775807},
+                                 {9223372036854775807, 9223372036854775807, 9223372036854775807},
+                                 {9223372036854775807, 9223372036854775807, 9223372036854775807}})
+
+     if  expected != len(result) {
+        t.Errorf("Multiplication is incorrect : expecting a number with %v digits, actual %v", expected, len(result))
+     }
+}

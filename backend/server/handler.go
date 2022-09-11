@@ -47,5 +47,6 @@ func Start() {
 	http.Handle("/echo", handleCsvMatrix(matrix.FmtSquareMatrix))
         http.Handle("/flatten", handleCsvMatrix(matrix.FmtFlattenMatrix))
         http.Handle("/sum", handleCsvMatrix(matrix.Sum))
+        http.Handle("/multiply", handleCsvMatrix(matrix.Multiply))
 	http.ListenAndServe(":8080", nil)
 }
