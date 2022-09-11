@@ -2,8 +2,8 @@ package server
 
 import (
 	"fmt"
+	"league/challenge/backend/matrix"
 	"net/http"
-        "league/challenge/backend/matrix"
 )
 
 // General handler that given an uploaded csv file, extract the
@@ -15,29 +15,28 @@ import (
 // Send request with:
 //		curl -F 'file=@/path/matrix.csv' ENDPOINT_URL
 
-
 func handleCsvMatrix(matrixFn matrix.FnMatrixString) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-               file, _, err := r.FormFile("file")
-	       if err != nil {
+		file, _, err := r.FormFile("file")
+		if err != nil {
 			http.Error(w, err.Error(), 400)
-                        return
-	       }
-	       defer file.Close()
-               matrix, err := matrix.NewMatrix(file)
-               if err != nil {
+			return
+		}
+		defer file.Close()
+		matrix, err := matrix.NewMatrix(file)
+		if err != nil {
 			http.Error(w, err.Error(), 400)
-                        return
-	       }
+			return
+		}
 
-               response, err := matrixFn(matrix)
+		response, err := matrixFn(matrix)
 
-               if err != nil {
+		if err != nil {
 			http.Error(w, err.Error(), 400)
-                        return
-	       }
+			return
+		}
 
-               fmt.Fprint(w, response)
+		fmt.Fprint(w, response)
 	})
 }
 
@@ -45,9 +44,9 @@ func handleCsvMatrix(matrixFn matrix.FnMatrixString) http.Handler {
 
 func Start() {
 	http.Handle("/echo", handleCsvMatrix(matrix.FmtSquareMatrix))
-        http.Handle("/flatten", handleCsvMatrix(matrix.FmtFlattenMatrix))
-        http.Handle("/sum", handleCsvMatrix(matrix.Sum))
-        http.Handle("/multiply", handleCsvMatrix(matrix.Multiply))
-        http.Handle("/invert", handleCsvMatrix(matrix.Invert))
+	http.Handle("/flatten", handleCsvMatrix(matrix.FmtFlattenMatrix))
+	http.Handle("/sum", handleCsvMatrix(matrix.Sum))
+	http.Handle("/multiply", handleCsvMatrix(matrix.Multiply))
+	http.Handle("/invert", handleCsvMatrix(matrix.Invert))
 	http.ListenAndServe(":8080", nil)
 }
