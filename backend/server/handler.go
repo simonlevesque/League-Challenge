@@ -14,6 +14,10 @@ import (
 //
 // Send request with:
 //		curl -F 'file=@/path/matrix.csv' ENDPOINT_URL
+//
+// Currently, the handler accepts all HTTP methods, but it could be
+// limited to only accept POST or PUT even if they are not a perfect fit
+// neither
 
 func handleCsvMatrix(matrixFn matrix.FnMatrixString) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
