@@ -11,14 +11,14 @@ import (
 
 // Given a csv file, return the matrix representation or an error
 
-func NewMatrix(r io.Reader) ([][]int, error) {
+func NewMatrix(r io.Reader) (Matrix, error) {
      records, err := csv.NewReader(r).ReadAll()
      if err != nil {
 	    return nil, fmt.Errorf("Invalid CSV file: %s", err.Error())
      }
      dimension := len(records)
 
-     matrix := make([][]int, dimension)
+     matrix := make(Matrix, dimension)
 
      for i, row := range records {
 

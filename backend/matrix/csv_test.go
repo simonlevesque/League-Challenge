@@ -10,7 +10,7 @@ func TestCreatNewMatrix(t *testing.T) {
      csvMockData := "1, 2, 3\n 4, 5, 6\n 7, 8, 9"
      mockCsvFileReader := strings.NewReader(csvMockData)
 
-     expected := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+     expected := Matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
 
      matrix, err := NewMatrix(mockCsvFileReader)
 
@@ -78,7 +78,7 @@ func TestNegativeNumberAreAllowed(t *testing.T) {
      csvMockData := "1, 2, -3\n 4, -5, 6\n 7, 8, 9"
      mockCsvFileReader := strings.NewReader(csvMockData)
 
-     expected := [][]int{{1, 2, -3}, {4, -5, 6}, {7, 8, 9}}
+     expected := Matrix{{1, 2, -3}, {4, -5, 6}, {7, 8, 9}}
 
      matrix, err := NewMatrix(mockCsvFileReader)
 
@@ -97,7 +97,7 @@ func TestEmptyFileReturnEmptyMatrix(t *testing.T) {
      csvMockEmptyData := ""
      mockCsvEmptyFileReader := strings.NewReader(csvMockEmptyData)
 
-     expected := [][]int{}
+     expected := Matrix{}
 
      emptyMatrix, err := NewMatrix(mockCsvEmptyFileReader)
 

@@ -6,9 +6,13 @@ import (
        "strings"
 )
 
+// type alias to make signature shorter and more readable
+
+type Matrix = [][]int
+
 // Return a squated formated string representation of a matrix
 
-func FmtSquareMatrix(m [][]int) string{
+func FmtSquareMatrix(m Matrix) string{
      var fmtMatrixStr string
      for _, row := range m {
          var fmtRowStrArray []string
