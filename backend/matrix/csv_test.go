@@ -6,6 +6,13 @@ import (
     "testing"
 )
 
+// Small helper function to avoid error handling when printing matrixes
+
+func prtMatrix(m Matrix) string {
+     s, _ := FmtSquareMatrix(m)
+     return s
+}
+
 func TestCreatNewMatrix(t *testing.T) {
      csvMockData := "1, 2, 3\n 4, 5, 6\n 7, 8, 9"
      mockCsvFileReader := strings.NewReader(csvMockData)
@@ -19,7 +26,7 @@ func TestCreatNewMatrix(t *testing.T) {
      }
 
      if !reflect.DeepEqual(expected, matrix) {
-        t.Errorf("Matrix creation return wrong matrix: \n\nexpected: \n%s\nactual: \n%s", FmtSquareMatrix(expected), FmtSquareMatrix(matrix))
+        t.Errorf("Matrix creation return wrong matrix: \n\nexpected: \n%s\nactual: \n%s", prtMatrix(expected), prtMatrix(matrix))
      }
 }
 
@@ -87,7 +94,7 @@ func TestNegativeNumberAreAllowed(t *testing.T) {
      }
 
      if !reflect.DeepEqual(expected, matrix) {
-        t.Errorf("Matrix creation return wrong matrix: \n\nexpected: \n%s\nactual: \n%s", FmtSquareMatrix(expected), FmtSquareMatrix(matrix))
+        t.Errorf("Matrix creation return wrong matrix: \n\nexpected: \n%s\nactual: \n%s", prtMatrix(expected), prtMatrix(matrix))
      }
 }
 
@@ -106,7 +113,7 @@ func TestEmptyFileReturnEmptyMatrix(t *testing.T) {
      }
 
      if !reflect.DeepEqual(expected, emptyMatrix) {
-        t.Errorf("Matrix creation return wrong matrix: \n\nexpected: \n%s\nactual: \n%s", FmtSquareMatrix(expected), FmtSquareMatrix(emptyMatrix))
+        t.Errorf("Matrix creation return wrong matrix: \n\nexpected: \n%s\nactual: \n%s", prtMatrix(expected), prtMatrix(emptyMatrix))
      }
 
 }

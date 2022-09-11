@@ -10,9 +10,13 @@ import (
 
 type Matrix = [][]int
 
+// function type that accpts a matric and return a string
+
+type FnMatrixString func(Matrix) (string, error)
+
 // Return a squated formated string representation of a matrix
 
-func FmtSquareMatrix(m Matrix) string{
+func FmtSquareMatrix(m Matrix) (string, error) {
      var fmtMatrixStr string
      for _, row := range m {
          var fmtRowStrArray []string
@@ -21,5 +25,5 @@ func FmtSquareMatrix(m Matrix) string{
          }
          fmtMatrixStr = fmt.Sprintf("%s%s\n", fmtMatrixStr, strings.Join(fmtRowStrArray, ","))
      }
-     return fmtMatrixStr
+     return fmtMatrixStr, nil
 }
