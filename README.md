@@ -78,6 +78,11 @@ docker build -t league-challenge .
 docker run -it -p 8080:8080 league-challenge:latest
 ```
 
+### running the test
+```
+docker run -it league-challenge:latest go test ./...
+```
+
 ### Developing form inside the container
 
 to be able to develop the web server without always rebuilding or restarting the docker container, run the container with this command:
@@ -86,3 +91,13 @@ docker run -it -p 8080:8080 -v /your/path/to/the/repo/backend:/go/src/league/cha
 ```
 
 This is accomplished by using the https://github.com/pilu/fresh project and docker volumes mapping. Fresh will watch for file events, and every time you create/modify/delete a file, it will build and restart the application automatically. Any compilation error will be printed in the terminal windows running the docker container, watch out if using the -d flag.
+
+#### TIP
+To run the unit tests from inside the container without stopping the web server, use this command in a separate terminal to start a shell in the dev container:
+```
+docker exec -it container_name sh
+```
+and then run the tests as needed with
+```
+go test ./...
+```
